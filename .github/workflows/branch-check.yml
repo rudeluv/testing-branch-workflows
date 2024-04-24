@@ -1,4 +1,4 @@
-name: Branch Naming Policy Action
+name: Build
 
 on:
   create:
@@ -14,11 +14,12 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Debug Log
-        run: echo ${{github.ref}} ${{github.event.pull_request.head.ref}} ${{github.ref_type}} ${{github.ref_type == 'branch'}} 'github.ref contains release' ${{contains(github.ref,'release')}} 'github.pr.ref contains release' ${{(github.event.pull_request.head.ref != '' && contains(github.event.pull_request.head.ref,'release'))}} 
-
-      - name: Check Branch Name For Release
+      - name: Branch name policy check
         if: |
           github.ref_type == 'branch'
           && (contains(github.ref,'release') || (github.event.pull_request.head.ref != '' && contains(github.event.pull_request.head.ref,'release')))
         run: echo 'Branch name contains release pattern:' ${{github.ref}} ${{github.event.pull_request.head.ref}} ${{github.ref_type}} && exit 1
+
+      - name: Checkout
+        run: echo 'Built image'
+     
