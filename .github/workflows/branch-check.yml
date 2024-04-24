@@ -15,10 +15,10 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Debug Log
-        run: echo ${{github.ref}} ${{github.event.pull_request.head.ref}} ${{github.ref_type}} ${{github.ref_type == 'branch'}} ${{contains('release',github.ref) == true}} ${{contains('release',github.event.pull_request.head.ref) == true}} 
+        run: echo ${{github.ref}} ${{github.event.pull_request.head.ref}} ${{github.ref_type}} ${{github.ref_type == 'branch'}} 'github.ref contains release' ${{contains('release',github.ref)}} 'github.pr.ref contains release' ${{contains('release',github.event.pull_request.head.ref)}} 
 
       - name: Check Branch Name For Release
         if: |
           github.ref_type == 'branch'
-          && (contains('release',github.ref) == true || contains('release',github.event.pull_request.head.ref) == true)
+          && (contains('release',github.ref) || contains('release',github.event.pull_request.head.ref))
         run: echo 'Branch name contains release pattern:' ${{github.ref}} ${{github.event.pull_request.head.ref}} ${{github.ref_type}} && exit 1
