@@ -16,7 +16,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Check Branch Name For Release
-        if: |
-          (github.ref_type == 'branch' || github.ref_type == 'pull_request') 
-          && startsWith(github.ref,'/refs/heads/release-v.') == true
+        # if: |
+        #   (github.ref_type == 'branch' || github.ref_type == 'pull_request') 
+        #   && startsWith(github.ref,'/refs/heads/release-v.') == true
         run: echo 'Branch name contains release pattern:' ${{github.ref}} ${{startsWith(github.ref,'/refs/heads/release-v.')}} ${{github.ref_type}} && exit 1
