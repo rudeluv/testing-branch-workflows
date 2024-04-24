@@ -15,7 +15,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Debug Log
-        run: echo ${{github.ref}} ${{github.event.pull_request.head.ref}} ${{github.ref_type}} ${{github.ref_type == 'branch'} ${{startsWith(github.ref,'refs/heads/release') == true}} ${{startsWith(github.event.pull_request.head.ref,'refs/heads/release') == true}} ${{(startsWith(github.ref,'refs/heads/release') == true || startsWith(github.event.pull_request.head.ref,'refs/heads/release') == true)}}
+        run: echo ${{github.ref}} ${{github.event.pull_request.head.ref}} ${{github.ref_type}} ${{github.ref_type == 'branch'}} ${{startsWith(github.ref,'refs/heads/release') == true}} ${{startsWith(github.event.pull_request.head.ref,'refs/heads/release') == true}} ${{(startsWith(github.ref,'refs/heads/release') == true || startsWith(github.event.pull_request.head.ref,'refs/heads/release') == true)}}
 
       - name: Check Branch Name For Release
         if: |
