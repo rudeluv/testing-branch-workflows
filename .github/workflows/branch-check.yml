@@ -19,4 +19,5 @@ jobs:
         uses: nicklegan/github-repo-branch-naming-policy-action@v1.1.1
         if: github.ref_type == 'branch' || github.ref_type == 'pull_request'
         with:
-          regex: '^(?!.*release-v).*$'
+          regex: '^(?!.*release-v).*$'\
+          token: ${{ secrets.GITHUB_TOKEN }}
