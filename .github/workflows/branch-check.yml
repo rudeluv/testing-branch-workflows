@@ -17,4 +17,4 @@ jobs:
 
       - name: Check Branch Name For Release
         if: (github.ref_type == 'branch' || github.ref_type == 'pull_request') && ${{startsWith(github.ref,'/refs/heads/release-v.') == true}}
-        run: echo 'Branch name contains release pattern. Please change it' && exit 1
+        run: echo 'Branch name contains release pattern:' ${{github.ref}} && exit 1
